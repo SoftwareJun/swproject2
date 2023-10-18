@@ -1,0 +1,62 @@
+package define.assignment;
+
+import java.util.Scanner;
+
+class WordGame {
+	String [] words;
+	public WordGame(String [] words) {
+		this.words = words;
+	}
+	public String selectWord() {
+		int index = (int)((words.length)*Math.random())+1;
+		return words[index];
+	}
+	public static boolean check(String s,StringBuffer a,char ch) {
+		boolean returns=false;
+		for(int i=0;i<s.length();i++) {
+			if(s.charAt(i)==ch) {
+				a.delete(i,i+1);
+				a.insert(i, ch);
+			}
+			
+		}
+		if(s.contentEquals(a)) {
+		returns = true;
+		}
+		return returns;
+	}
+}
+public class WordGameTest {
+
+	public static void main(String[] args) {
+		System.out.println("----(문제5-1)----");
+	      String solution;
+	      String s;
+	      char ch;
+	      Scanner sc = new Scanner(System.in);
+			
+	      String[] words = { "java", "count", "school", "student", "computer", "programmer" };
+	      WordGame wg = new WordGame(words);
+			
+	      do {
+	            System.out.print("(1)Word Game, (2)exit: ");
+	            s = sc.nextLine();
+	            if(s.charAt(0)=='2') break;
+	            solution = wg.selectWord();
+	            StringBuffer answer = new StringBuffer(solution.length());
+	            for (int i = 0; i < solution.length(); i++)
+	                answer.append('_');
+
+	            while (true) {
+	                System.out.println("현재의 상태: " + answer);
+	                System.out.print("글자를 추측하시오: ");
+	                s = sc.nextLine();
+	                if (WordGame.check(solution, answer, s.charAt(0)) == true)
+	                    break;
+	            }
+	            System.out.println("현재의 상태: " + answer + "\n");
+	      } while(true);
+
+	}
+
+}
