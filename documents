@@ -1,0 +1,59 @@
+package statistics;
+
+import java.util.Scanner;
+
+class Document {
+	String [] words;
+	public String[] splitWords(String s) {
+		this.words = s.split(" ");
+		return words;
+	}
+	public int [] countLetters(String [] wordlist) {
+		int[] alphabets = new int[26];
+		for(int i=0;i<26;i++) {
+			//alphabets[i]=(char)('a'+i);
+			//alphabets[i]=0;
+			for(int j=0;j<wordlist.length;j++) {
+				for(int k=0;k<wordlist[j].length();k++) {
+					if(wordlist[j].charAt(k)==((char)('a'+i))) {
+						alphabets[i]++;
+					}
+				}
+			}
+		}
+		return alphabets;
+	}
+	public int totalLetters(int [] countArray) {
+		int sum=0;
+		for(int i=0;i<countArray.length;i++) {
+			sum=sum+countArray[i];
+		}
+		return sum;
+	}
+}
+public class DocuTest {
+
+	public static void main(String[] args) {
+		 System.out.println("\n----(문제5-3)----");
+         Document doc = new Document();
+         int[] counter;
+         Scanner sc = new Scanner(System.in);
+         System.out.print("----------------\n영어 문장을 입력하세요: ");
+         String s = sc.nextLine();
+		
+         String[] wordList = doc.splitWords(s);
+         System.out.println("----------------\n단어개수: "+wordList.length+"개");
+		
+         System.out.println("----------------");
+         counter = doc.countLetters(wordList);
+         for(int i=0;i<26; i++) {
+        	 char ch = (char)(i+'a');  
+             System.out.println("문자('" + ch + "')개수: "+counter[i]+"개");
+         }
+		
+         int total = doc.totalLetters(counter);
+         System.out.println("----------------\n글자개수: "+total+"개\n----------------");
+     
+	}
+
+}
