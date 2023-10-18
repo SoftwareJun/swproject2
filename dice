@@ -1,0 +1,32 @@
+package define.assignment;
+class Dice {
+	int value;
+	Dice(int val) {
+		this.value = val;
+	}
+	public int roll() {
+		value = (int)(Math.random()*6)+1;
+		return value;
+	}
+	public int getValue() {
+		return value;
+	}
+	@Override
+	public String toString() {
+		return "현재 주사위 상태 : " + value;
+	}
+	
+}
+public class DiceTest {
+
+	public static void main(String[] args) {
+		System.out.println("\n----(문제5-2)----");
+        Dice d = new Dice(5);	
+        for(int i=0; i<10; i++) {
+            System.out.println(d.toString());
+            d.roll();
+        }
+
+	}
+
+}
